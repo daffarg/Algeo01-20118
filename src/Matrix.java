@@ -70,4 +70,20 @@ public class Matrix {
         }
 
     }
+
+    /* **** Selektor **** */
+    int getLastIdxRow (Matrix m) {
+        // Mengembalikan indeks terakhir baris 
+        return RowEff - 1;
+    }
+
+    int getLastIdxCol (Matrix m) {
+        // Mengembalikan indeks terakhir kolom
+        return ColEff - 1;
+    }
+
+    int getNumberOfEelement (Matrix m) {
+        // Mengembalikan ukuran matriks
+        return RowEff * ColEff;
+    }
 }
