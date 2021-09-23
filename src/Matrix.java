@@ -74,16 +74,54 @@ public class Matrix {
     /* **** Selektor **** */
     int getLastIdxRow (Matrix m) {
         // Mengembalikan indeks terakhir baris 
-        return RowEff - 1;
+        return m.RowEff - 1;
     }
 
     int getLastIdxCol (Matrix m) {
         // Mengembalikan indeks terakhir kolom
-        return ColEff - 1;
+        return m.ColEff - 1;
     }
 
     int getNumberOfEelement (Matrix m) {
         // Mengembalikan ukuran matriks
-        return RowEff * ColEff;
+        return m.RowEff * m.ColEff;
+    }
+
+    /* **** Predikat **** */
+    boolean isSquare (Matrix m) {
+        // Mengembalikan true jika matriks tersebut adalah matriks bujur sangkar
+        return (m.RowEff == m.ColEff);
+    }
+    boolean isIdentity (Matrix m) {
+        // Mengembalikan true jika matriks tersebut adalah matriks identitas 
+        int i = 0;
+        int j;
+        boolean flag = true;
+
+        if (isSquare(m)) {
+            while (i < m.RowEff && flag) {
+                j = 0;
+                while (j < m.ColEff && flag) {
+                    if (i == j) {
+                        if (m.Content[i][j] != 1) {
+                            flag = false;
+                        }
+                    } else {
+                        if (m.Content[i][j] != 0) {
+                            flag = false;
+                        }
+                    }
+                    if (flag) {
+                        j ++;
+                    }
+                }
+                if (flag) {
+                    i ++;
+                }
+            }
+        } else {
+            flag = false;
+        }
+        return flag;
     }
 }
