@@ -94,6 +94,34 @@ public class Matrix {
     }
 
     /* **** Predikat **** */
+    boolean isEqual (Matrix m1, Matrix m2) {
+    // Mengembalikan true jika jumlah baris dan kolom m1 sama dengan 
+    // dan setiap elemen m1 sama dengan elemen m2
+    // KAMUS LOKAL
+        int i, j;
+        boolean flag;
+    // ALGORITMA 
+        i = 0;
+        flag = true;
+        if (m1.RowEff == m2.RowEff && m1.ColEff == m2.ColEff) {
+            while (i < m1.RowEff && flag) {
+                j = 0;
+                while (j < m1.ColEff && flag) {
+                    if (m1.Content[i][j] != m2.Content[i][j]) {
+                        flag = false;
+                    } else {
+                        j ++;
+                    }
+                } if (flag) {
+                    i ++;
+                }
+            }
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
+
     boolean isSquare (Matrix m) {
     // Mengembalikan true jika matriks tersebut adalah matriks bujur sangkar
     // KAMUS LOKAL
