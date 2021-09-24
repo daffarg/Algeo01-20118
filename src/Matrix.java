@@ -72,21 +72,21 @@ public class Matrix {
     }
 
     /* **** Selektor **** */
-    int getLastIdxRow (Matrix m) {
+    public int getLastIdxRow (Matrix m) {
     // Mengembalikan indeks terakhir baris 
     // KAMUS LOKAL
     // ALGORITMA
     return m.RowEff - 1;
     }
 
-    int getLastIdxCol (Matrix m) {
+    public int getLastIdxCol (Matrix m) {
     // Mengembalikan indeks terakhir kolom
     // KAMUS LOKAL
     // ALGORITMA
     return m.ColEff - 1;
     }
 
-    int getNumberOfEelement (Matrix m) {
+    public int getNumberOfEelement (Matrix m) {
     // Mengembalikan ukuran matriks
     // KAMUS LOKAL
     // ALGORITMA
@@ -94,7 +94,7 @@ public class Matrix {
     }
 
     /* **** Predikat **** */
-    boolean isEqual (Matrix m1, Matrix m2) {
+    public boolean isEqual (Matrix m1, Matrix m2) {
     // Mengembalikan true jika jumlah baris dan kolom m1 sama dengan 
     // dan setiap elemen m1 sama dengan elemen m2
     // KAMUS LOKAL
@@ -122,14 +122,14 @@ public class Matrix {
         return flag;
     }
 
-    boolean isSquare (Matrix m) {
+    public boolean isSquare (Matrix m) {
     // Mengembalikan true jika matriks tersebut adalah matriks bujur sangkar
     // KAMUS LOKAL
     // ALGORITMA
         return (m.RowEff == m.ColEff);
     }
 
-    boolean isIdentity (Matrix m) {
+    public boolean isIdentity (Matrix m) {
     // Mengembalikan true jika matriks tersebut adalah matriks identitas 
     // KAMUS LOKAL
         int i = 0;
@@ -166,7 +166,7 @@ public class Matrix {
 
     /* **** Assignment Matriks **** */
 
-    void copyMatrix(Matrix mIn, Matrix mOut) {
+    public void copyMatrix(Matrix mIn, Matrix mOut) {
     // I.S. mIn terdefinisi, mOut sembarang
     // F.S. mOut terdefinisi dengan ukuran dan elemen yang sama dengan mIn
 
@@ -186,7 +186,7 @@ public class Matrix {
     }
 
     /* **** Create Jenis-Jenis Matriks **** */
-    Matrix createMatrixIdentitas(int N) {
+    public Matrix createMatrixIdentitas(int N) {
     // Membuat matriks identitas
     // KAMUS LOKAL
         int i,j;
@@ -204,7 +204,7 @@ public class Matrix {
         return I;
     }
 
-    Matrix createMatrixHilbert(int N) {
+    public Matrix createMatrixHilbert(int N) {
     // Membuat matriks Hilbert
     // KAMUS LOKAL
         int i,j;
@@ -219,7 +219,7 @@ public class Matrix {
     }
     
     /* **** Input Output Matriks **** */
-    void readMatrix() {
+    public void readMatrix() {
     // I.S. Matriks terdefinisi
     // F.S. Elemen matriks terisi sesuai input user
 
@@ -235,7 +235,7 @@ public class Matrix {
 
     }
 
-    void displayMatrix() {
+    public void displayMatrix() {
     // I.S. Matriks terdefinisi
     // F.S. Matriks tampil di layar user
     // KAMUS LOKAL
@@ -251,7 +251,7 @@ public class Matrix {
     
 
     /* **** Operasi-Operasi Matriks Dasar **** */
-    Matrix multiplyMatrix (Matrix m1, Matrix m2) {
+    public Matrix multiplyMatrix (Matrix m1, Matrix m2) {
     // Mengalikan matriks m1 dengan m2
     // KAMUS LOKAL
         int i, j;
@@ -268,7 +268,7 @@ public class Matrix {
         return mHasil;
     }
 
-    Matrix multiplyConst (Matrix m1, float k) {
+    public Matrix multiplyConst (Matrix m1, float k) {
     // Mengalikan matriks m1 dengan k
     // KAMUS LOKAL
         Matrix mHasil = new Matrix(m1.RowEff,m1.ColEff);
@@ -282,7 +282,7 @@ public class Matrix {
         return mHasil;
     }
     
-    Matrix addMatrix(Matrix m1, Matrix m2) {
+    public Matrix addMatrix(Matrix m1, Matrix m2) {
     // KAMUS LOKAL menambah matrix m1 dengan m2
         int i, j;
         Matrix mHasil = new Matrix(m1.RowEff,m1.ColEff);
@@ -296,7 +296,7 @@ public class Matrix {
         return mHasil;
     }
     
-    Matrix subtractMatrix(Matrix m1, Matrix m2) {
+    public Matrix subtractMatrix(Matrix m1, Matrix m2) {
     // Mengurangi matrix m1 dengan m2
     // KAMUS LOKAL
         int i,j;
@@ -311,7 +311,7 @@ public class Matrix {
     }
     
     /* **** Operasi-Operasi Baris Elementer **** */
-    void swapRow(int row1, int row2) {
+    public void swapRow(int row1, int row2) {
     // I.S. row1 dan row2 memiliki total elemen yang sama
     // F.S. row1 dan row2 tertukar semua elemennya satu sama lain
     
@@ -322,7 +322,7 @@ public class Matrix {
         Content[row2] = temp;
     }
 
-    void multiplyRow(int row, double k) {
+    public void multiplyRow(int row, double k) {
     // I.S. row dan k terdefinisi
     // F.S. semua elemen pada row nilainya menjadi nilai elemen tersebut dikali dengan k
 
@@ -334,7 +334,7 @@ public class Matrix {
         }
     }
 
-    void plusRow(int row1, int row2, double k) {
+    public void plusRow(int row1, int row2, double k) {
     // I.S. row 1, row2, dan k terdefinisi
     //      jumlah elemen row1 sama dengan row2
     // F.S. setiap elemen row1 nilainya menjadi elemen tersebut ditambah dengan k kali elemen row2
@@ -346,5 +346,6 @@ public class Matrix {
             Content[row1][j] += Content[row2][j]*k;
         }
     }
+    
     
 }
