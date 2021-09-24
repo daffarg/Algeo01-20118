@@ -2,6 +2,8 @@ import java.util.*;
 
 import java.io.*;
 
+import java.lang.Math;
+
 public class Matrix {
     // Untuk input data
     Scanner input = new Scanner(System.in);
@@ -489,5 +491,57 @@ public class Matrix {
             } 
         }
         return det;
+    }
+
+    public double determinantOBE (Matrix m) {
+    // Mengembalikan nilai determinan matriks m dengan metode reduksi baris
+    // menjadikan matriks m menjadi matriks segitiga atas
+
+    // KAMUS LOKAL
+        double det;
+        int i,j;
+        int[] count0 = new int[m.RowEff];
+        int temp, countSwap;
+    // ALGORITMA
+        det = 1;
+        for (i = 0; i < m.RowEff; i++) {
+            count0[i] = 0;
+            j = 0;
+            while (j < m.ColEff && m.Content[i][j] == 0) {
+                count0[i] += 1;
+                j++;        
+            }
+        }
+
+        // Menukar baris
+        countSwap = 0;
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.RowEff - 1; j++) {
+                if (count0[j] > count0[j+1]) {
+                    m.swapRow(j, j+1);
+                    countSwap ++;
+                    temp = count0[j+1];
+                    count0[j+1] = count0[j];
+                    count0[j] = temp;
+                }
+            }
+        }
+
+        // Menjadikan matriks segitiga bawah
+        for (i = 0; i < m.RowEff; i ++) {
+            for (j = i + 1; j < m.RowEff; j ++) {
+                if (m.Content[i][i] != 0) {
+                    plusRow(j, i, -m.Content[j][i]/m.Content[i][i]);
+                } else {
+                    break;
+                } 
+            }
+        }
+
+        // Mengalikan seluruh diagonal utama untuk mendapatkan determinan
+        for (i = 0; i < m.RowEff; i ++) {
+            det = det * m.Content[i][i];
+        }
+        return det * Math.pow(-1, countSwap);
     }
 }

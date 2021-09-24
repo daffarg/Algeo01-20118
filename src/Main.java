@@ -4,14 +4,14 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        Matrix m = new Matrix(3, 3);
+        Matrix m = new Matrix(4, 4);
         m.readMatrix();
         System.out.println('\n');
         m.displayMatrix();
         System.out.println('\n');
         /*m.gaussJordanElimination(m);
         m.displayMatrix(); */
-        System.out.printf("%f", m.determinantCofactor(m));
+        System.out.printf("%f", m.determinantOBE(m));
 
     }
 }
