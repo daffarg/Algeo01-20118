@@ -136,6 +136,24 @@ public class Matrix {
         return flag;
     }
 
+    /* **** Assignment Matriks **** */
+
+    void copyMatrix(Matrix mIn, Matrix mOut) {
+        // KAMUS LOKAL 
+        int i, j;
+
+        // ALGORITMA 
+        mOut.RowEff = mIn.RowEff;
+        mOut.ColEff = mIn.ColEff;
+        mOut.Content = new double[mIn.RowEff][mIn.ColEff];
+
+        for (i = 0; i < mIn.RowEff; i ++) {
+            for (j = 0; j < mIn.ColEff; j ++ ) {
+                mOut.Content[i][j] = mIn.Content[i][j];
+            }
+        }
+    }
+
     /* **** Create Jenis-Jenis Matriks **** */
     Matrix createMatrixIdentitas(int N) {
     // Membuat matriks identitas
@@ -287,4 +305,5 @@ public class Matrix {
             Content[row1][j] += Content[row2][j]*k;
         }
     }
+    
 }
