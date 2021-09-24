@@ -502,12 +502,15 @@ public class Matrix {
         int i,j;
         int[] count0 = new int[m.RowEff];
         int temp, countSwap;
+        Matrix mcopy;
     // ALGORITMA
+        mcopy = new Matrix(m.RowEff, m.ColEff);
+        m.copyMatrix(m, mcopy);
         det = 1;
-        for (i = 0; i < m.RowEff; i++) {
+        for (i = 0; i < mcopy.RowEff; i++) {
             count0[i] = 0;
             j = 0;
-            while (j < m.ColEff && m.Content[i][j] == 0) {
+            while (j < mcopy.ColEff && mcopy.Content[i][j] == 0) {
                 count0[i] += 1;
                 j++;        
             }
@@ -515,10 +518,10 @@ public class Matrix {
 
         // Menukar baris
         countSwap = 0;
-        for (i = 0; i < m.RowEff; i++) {
-            for (j = 0; j < m.RowEff - 1; j++) {
+        for (i = 0; i < mcopy.RowEff; i++) {
+            for (j = 0; j < mcopy.RowEff - 1; j++) {
                 if (count0[j] > count0[j+1]) {
-                    m.swapRow(j, j+1);
+                    mcopy.swapRow(j, j+1);
                     countSwap ++;
                     temp = count0[j+1];
                     count0[j+1] = count0[j];
@@ -526,12 +529,13 @@ public class Matrix {
                 }
             }
         }
+        
 
         // Menjadikan matriks segitiga bawah
-        for (i = 0; i < m.RowEff; i ++) {
-            for (j = i + 1; j < m.RowEff; j ++) {
-                if (m.Content[i][i] != 0) {
-                    plusRow(j, i, -m.Content[j][i]/m.Content[i][i]);
+        for (i = 0; i < mcopy.RowEff; i ++) {
+            for (j = i + 1; j < mcopy.RowEff; j ++) {
+                if (mcopy.Content[i][i] != 0) {
+                    mcopy.plusRow(j, i, -mcopy.Content[j][i] / mcopy.Content[i][i]);
                 } else {
                     break;
                 } 
@@ -539,9 +543,36 @@ public class Matrix {
         }
 
         // Mengalikan seluruh diagonal utama untuk mendapatkan determinan
-        for (i = 0; i < m.RowEff; i ++) {
-            det = det * m.Content[i][i];
+        for (i = 0; i < mcopy.RowEff; i ++) {
+            det = det * mcopy.Content[i][i];
         }
         return det * Math.pow(-1, countSwap);
+    }
+
+    public double getCofactor (Matrix m, int row, int col) {
+        // Mengembalikan minor dari matriks m sesuai baris row dan kolom col
+        // KAMUS LOKAL
+        Matrix minor;
+        int i, j;
+        int rowmin, colmin;
+        // ALGORITMA 
+        rowmin = 0;
+        colmin = 0;
+        minor = new Matrix(m.RowEff-1, m.ColEff-1);
+        for (i = 0; i < m.RowEff; i ++) {
+            for (j = 0; j < m.ColEff; j ++) {
+                if (i != row && j != col) {
+                    minor.Content[rowmin][colmin] = m.Content[i][j];
+                    System.out.printf("%f\n", m.Content[i][j]);
+                    System.out.printf("%f\n", minor.Content[rowmin][colmin]);
+                    colmin = colmin + 1;
+                    if (colmin == minor.ColEff) {
+                        colmin = 0;
+                        rowmin = rowmin + 1;
+                    }
+                } 
+            }
+        }
+        return Math.pow(-1, row + col) * determinantCofactor(minor);
     }
 }
