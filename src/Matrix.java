@@ -3,7 +3,6 @@ import java.util.*;
 import java.io.*;
 
 public class Matrix {
-
     // Untuk input data
     Scanner input = new Scanner(System.in);
 
@@ -12,7 +11,6 @@ public class Matrix {
     int ColCap = 100;
     int RowEff; // Jumlah baris effektif, minimal 1
     int ColEff; // Jumlah baris efektif minimal 1
-    int row, col; // row : baris matrix, col : kolom matrix
     double [][] Content;
     // isi dari matriks. cara mengakses matriks Matrix.Content[row][col]
     // indeks (row) baris dan (col) dimulai dari 0;
@@ -348,7 +346,7 @@ public class Matrix {
     }
 
     /* **** Operasi-Operasi Matriks Tunggal **** */
-    void eselonMatrix1(Matrix m) {
+    public void gaussElimination(Matrix m) {
     // KAMUS LOKAL
         int i,j;
         int[] count0 = new int[m.RowEff];
@@ -368,7 +366,7 @@ public class Matrix {
 
         // Menukar baris
         for (i = 0; i < m.RowEff; i++) {
-            for (j = 0; j < m.ColEff - 1; j++) {
+            for (j = 0; j < m.RowEff - 1; j++) {
                 if (count0[j] > count0[j+1]) {
                     m.swapRow(j, j+1);
                     temp = count0[j+1];
@@ -379,25 +377,54 @@ public class Matrix {
         }
 
         // Mencari kolom yang nilainya bukan 0;
-        col = 0;
+        
         for (i = 0; i < m.RowEff; i++) {
-            while (m.Content[i][col] == 0 && col < m.ColEff) {
-                col++;
+            col = 0;
+            while (col < m.ColEff) {
+                if (m.Content[i][col] == 0) {
+                    col++;
+                } else {
+                    break;
+                }
             }
 
             // Membagi baris ke-i agar elemen pertama dari kiri setelah 0 bernilai 1
             if (col != m.ColEff) {
+                double x = m.Content[i][col];
                 for (j = col; j < m.ColEff; j++) {
-                    m.Content[i][j] = m.Content[i][j] / m.Content[i][col];
+                    m.Content[i][j] = m.Content[i][j] / x;
                 }
             }
 
             // Mengurangi baris [i+1..m.RowEff-1] matriks 
             row = i+1;
-            while (m.Content[row][col] != 0 && row < m.RowEff) {
-                m.plusRow(row, i, -m.Content[row][col]);
+            while (row < m.RowEff && col < m.ColEff) {
+                if (m.Content[row][col] != 0) {
+                    m.plusRow(row, i, -m.Content[row][col]);
+                }
                 row++;
             }        
+        }
+        
+        for (i = 0; i < m.RowEff; i++) {
+            count0[i] = 0;
+            j = 0;
+            while (j < m.ColEff && m.Content[i][j] == 0) {
+                count0[i] += 1;
+                j++;        
+            }
+        }
+
+        // Menukar baris lagi jika terdapat sebuah baris yang elemennya 0 semua, tetapi baris berikutnya tidak 0 semua
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.RowEff - 1; j++) {
+                if (count0[j] > count0[j+1]) {
+                    m.swapRow(j, j+1);
+                    temp = count0[j+1];
+                    count0[j+1] = count0[j];
+                    count0[j] = temp;
+                }
+            }
         }
     }
 }
