@@ -346,6 +346,58 @@ public class Matrix {
             Content[row1][j] += Content[row2][j]*k;
         }
     }
-    
-    
+
+    /* **** Operasi-Operasi Matriks Tunggal **** */
+    void eselonMatrix1(Matrix m) {
+    // KAMUS LOKAL
+        int i,j;
+        int[] count0 = new int[m.RowEff];
+        int temp;
+        int row, col;
+    // ALGORITMA
+        // Mengurutkan baris Matriks berdasarkan banyaknya angka nol yang berurutan di bagian kolom kiri
+        // sebelum angka bukan 0;
+        for (i = 0; i < m.RowEff; i++) {
+            count0[i] = 0;
+            j = 0;
+            while (j < m.ColEff && m.Content[i][j] == 0) {
+                count0[i] += 1;
+                j++;        
+            }
+        }
+
+        // Menukar baris
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.ColEff - 1; j++) {
+                if (count0[j] > count0[j+1]) {
+                    m.swapRow(j, j+1);
+                    temp = count0[j+1];
+                    count0[j+1] = count0[j];
+                    count0[j] = temp;
+                }
+            }
+        }
+
+        // Mencari kolom yang nilainya bukan 0;
+        col = 0;
+        for (i = 0; i < m.RowEff; i++) {
+            while (m.Content[i][col] == 0 && col < m.ColEff) {
+                col++;
+            }
+
+            // Membagi baris ke-i agar elemen pertama dari kiri setelah 0 bernilai 1
+            if (col != m.ColEff) {
+                for (j = col; j < m.ColEff; j++) {
+                    m.Content[i][j] = m.Content[i][j] / m.Content[i][col];
+                }
+            }
+
+            // Mengurangi baris [i+1..m.RowEff-1] matriks 
+            row = i+1;
+            while (m.Content[row][col] != 0 && row < m.RowEff) {
+                m.plusRow(row, i, -m.Content[row][col]);
+                row++;
+            }        
+        }
+    }
 }
