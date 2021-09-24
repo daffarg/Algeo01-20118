@@ -9,7 +9,7 @@ public class Main {
         System.out.println('\n');
         m.displayMatrix();
         System.out.println('\n');
-        m.gaussElimination(m);
+        m.gaussJordanElimination(m);
         m.displayMatrix();
     }
 }

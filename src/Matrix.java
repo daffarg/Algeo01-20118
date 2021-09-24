@@ -347,6 +347,7 @@ public class Matrix {
 
     /* **** Operasi-Operasi Matriks Tunggal **** */
     public void gaussElimination(Matrix m) {
+    // Melakukan metode eliminasi gauss pada matriks m
     // KAMUS LOKAL
         int i,j;
         int[] count0 = new int[m.RowEff];
@@ -424,6 +425,29 @@ public class Matrix {
                     count0[j+1] = count0[j];
                     count0[j] = temp;
                 }
+            }
+        }
+    }
+
+    public void gaussJordanElimination (Matrix m) {
+        // Melakukan metode eliminasi Gauss-Jordan pada matriks m
+        // KAMUS LOKAL
+        int i, row, col;
+        // ALGORITMA
+        gaussElimination(m);
+        for (i = m.RowEff-1; i >= 1; i --) {
+            col = 0;
+            while (col < m.ColEff) {
+                if (m.Content[i][col] != 1) {
+                    col ++;
+                } else {
+                    break;
+                }
+            } 
+            if (col != m.ColEff) {
+                for (row = i-1; row >= 0; row --) {
+                    m.plusRow(row, i, -m.Content[row][col]);
+                }   
             }
         }
     }
