@@ -139,10 +139,13 @@ public class Matrix {
     /* **** Assignment Matriks **** */
 
     void copyMatrix(Matrix mIn, Matrix mOut) {
-        // KAMUS LOKAL 
+    // I.S. mIn terdefinisi, mOut sembarang
+    // F.S. mOut terdefinisi dengan ukuran dan elemen yang sama dengan mIn
+
+    // KAMUS LOKAL 
         int i, j;
 
-        // ALGORITMA 
+    // ALGORITMA 
         mOut.RowEff = mIn.RowEff;
         mOut.ColEff = mIn.ColEff;
         mOut.Content = new double[mIn.RowEff][mIn.ColEff];
@@ -189,7 +192,9 @@ public class Matrix {
     
     /* **** Input Output Matriks **** */
     void readMatrix() {
-    // Membaca inputan matriks dari keyboard
+    // I.S. Matriks terdefinisi
+    // F.S. Elemen matriks terisi sesuai input user
+
     // KAMUS LOKAL
         int i, j;
     // ALGORITMA
@@ -203,7 +208,8 @@ public class Matrix {
     }
 
     void displayMatrix() {
-    // Menampilkan isi matriks
+    // I.S. Matriks terdefinisi
+    // F.S. Matriks tampil di layar user
     // KAMUS LOKAL
         int i, j;
     // ALGORITMA
@@ -278,7 +284,9 @@ public class Matrix {
     
     /* **** Operasi-Operasi Baris Elementer **** */
     void swapRow(int row1, int row2) {
-    // Menukar baris
+    // I.S. row1 dan row2 memiliki total elemen yang sama
+    // F.S. row1 dan row2 tertukar semua elemennya satu sama lain
+    
     // KAMUS LOKAL
         double[] temp = Content[row1];
     // ALGORITMA
@@ -287,7 +295,9 @@ public class Matrix {
     }
 
     void multiplyRow(int row, double k) {
-    // Mengalikan baris (row) dengan k
+    // I.S. row dan k terdefinisi
+    // F.S. semua elemen pada row nilainya menjadi nilai elemen tersebut dikali dengan k
+
     // KAMUS LOKAL
         int j;
     // ALGORITMA
@@ -297,7 +307,10 @@ public class Matrix {
     }
 
     void plusRow(int row1, int row2, double k) {
-    // Menambah baris 1 (row1) dengan k kali baris 2 (row2) 
+    // I.S. row 1, row2, dan k terdefinisi
+    //      jumlah elemen row1 sama dengan row2
+    // F.S. setiap elemen row1 nilainya menjadi elemen tersebut ditambah dengan k kali elemen row2
+    
     // KAMUS LOKAL
         int j;
     // ALGORITMA
