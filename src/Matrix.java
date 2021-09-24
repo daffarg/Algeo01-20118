@@ -451,4 +451,43 @@ public class Matrix {
             }
         }
     }
+
+    public double determinantCofactor (Matrix m) {
+        // Mengembalikan nilai determinan matriks m dengan metode ekspansi kofaktor
+        // KAMUS LOKAL
+        int i, j, k, colkof, rowkof, sign;
+        double det;
+        Matrix minor;
+
+        // ALGORITMA 
+        sign = 1; 
+        det = 0; 
+        if (m.RowEff == 1) {
+            det = m.Content[0][0];
+        } else if (m.RowEff == 2) {
+            det = m.Content[0][0] * m.Content[1][1] - m.Content[0][1] * m.Content[1][0];
+        } else {    
+            for (k = 0; k < m.RowEff; k ++) {     
+                rowkof = 0;
+                colkof = 0;
+                minor = new Matrix(m.RowEff-1, m.ColEff-1);
+                for (i = 0; i < m.RowEff; i ++) {
+                    for (j = 0; j < m.ColEff; j ++) {
+                        if (i != 0 && j != k) {
+                            minor.Content[rowkof][colkof] = m.Content[i][j];
+                            colkof = colkof + 1;
+                            if (colkof == minor.ColEff) {
+                                colkof = 0;
+                                rowkof = rowkof + 1;
+                            }
+                        } 
+                    }
+                }
+                
+                det = det + sign * determinantCofactor(minor) * m.Content[0][k];
+                sign = sign * -1;
+            } 
+        }
+        return det;
+    }
 }
