@@ -268,6 +268,20 @@ public class Matrix {
         return mHasil;
     }
 
+    public Matrix multiplyConst (Matrix m1, double k) {
+    // Mengalikan matriks m1 dengan k
+    // KAMUS LOKAL
+        Matrix mHasil = new Matrix(m1.RowEff,m1.ColEff);
+        int i, j;
+    // ALGORITM
+        for (i = 0; i < m1.RowEff; i++) {
+            for (j = 0; j < m1.ColEff; j++) {
+                mHasil.Content[i][j] = m1.Content[i][j]*k;
+            }
+        }
+        return mHasil;
+    }
+
     public Matrix multiplyConst (Matrix m1, float k) {
     // Mengalikan matriks m1 dengan k
     // KAMUS LOKAL
@@ -588,5 +602,71 @@ public class Matrix {
             }
         }
         return Math.pow(-1, row + col) * determinantCofactor(minor);
+    }
+
+    public Matrix inverseCofaktor (Matrix m) {
+    // Prekondisi determinan matriks m != 0 dan m adalah matriks persegi
+    // Mengembalikan inverse dari matriks m
+    // KAMUS LOKAL
+        int i, j;
+        double det;
+        Matrix mInvers;
+    // ALGORITMA
+        // Menyalin matriks m ke matriks mcopy
+        mInvers = new Matrix(m.RowEff,m.ColEff);
+        det =  determinantCofactor(m);
+
+        // Mengisi matriks mcopy dengan elemen kofaktor matriks m
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.ColEff; j++) {
+                mInvers.Content[i][j] = getCofactor(m, i, j);
+            }
+        }
+        // adjoin dari matriks
+        mInvers = transpose(mInvers);
+    
+        // mengalikan mcopy dengan 1/det(m)
+        mInvers = multiplyConst(mInvers, 1/det);
+        
+        return mInvers;   
+    }
+
+    public Matrix inverseOBE (Matrix m) {
+    // Pre kondisi determinan matriks m != 0 dan m merupakan matriks persegi 
+    // Menghasilkan inverse matriks dari m dengan metode Eliminasi Gaus-Jordan
+    // KAMUS LOKAL
+        Matrix mInvers, mConcat;
+        int i, j;
+    // ALGORITMA
+        // Inisialisasi matriks mInvers dengan matriks identitas
+        mInvers =  new Matrix(m.RowEff,m.ColEff);
+        mInvers = mInvers.createMatrixIdentitas(m.RowEff);
+        
+        // Inisialisasi matriks mConcat dengan gabungan dari matriks m dan matriks mInvers
+        mConcat = new Matrix(m.RowEff,2*m.ColEff);
+        
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.ColEff; j++) {
+                mConcat.Content[i][j] = m.Content[i][j];
+            }
+        }
+        
+        for (i = 0; i < mInvers.RowEff; i++) {
+            for (j = 0; j < mInvers.ColEff; j++) {
+                mConcat.Content[i][j+m.ColEff] = mInvers.Content[i][j];
+            }
+        }
+
+        // Operasi Elementer 
+        gaussJordanElimination(mConcat);
+            
+        // Menyalin invers matriks m dari matriks mConcat ke matriks mInvers
+        for (i = 0; i < mInvers.RowEff; i++) {
+            for (j = 0; j < mInvers.ColEff; j++) {
+                mInvers.Content[i][j] = mConcat.Content[i][j+m.ColEff];
+            }
+        }
+    
+        return mInvers;
     }
 }
