@@ -348,6 +348,22 @@ public class Matrix {
     }
 
     /* **** Operasi-Operasi Matriks Tunggal **** */
+    public Matrix transpose(Matrix m) {
+    // Menghasilkan transpose dari matriks m
+    // KAMUS LOKAL
+        int i,j;
+        Matrix mcopy;
+    // ALGORITMA
+        mcopy = new Matrix(m.ColEff,m.RowEff);
+            
+        for (i = 0; i < m.RowEff; i++) {
+            for (j = 0; j < m.ColEff; j++) {
+                mcopy.Content[j][i] = m.Content[i][j];
+            }
+        }
+        return mcopy;
+    }
+
     public void gaussElimination(Matrix m) {
     // Melakukan metode eliminasi gauss pada matriks m
     // KAMUS LOKAL
@@ -563,8 +579,6 @@ public class Matrix {
             for (j = 0; j < m.ColEff; j ++) {
                 if (i != row && j != col) {
                     minor.Content[rowmin][colmin] = m.Content[i][j];
-                    System.out.printf("%f\n", m.Content[i][j]);
-                    System.out.printf("%f\n", minor.Content[rowmin][colmin]);
                     colmin = colmin + 1;
                     if (colmin == minor.ColEff) {
                         colmin = 0;
