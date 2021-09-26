@@ -26,10 +26,11 @@ public class Main {
         // System.out.printf("%.2f", m.determinantOBE(m));
         //System.out.println('\n');
         //System.out.println(m.getCofactor(m, 1, 0));
-        if (m.determinantCofactor(m) != 0) {
-            m.inverseOBE(m).displayMatrix();
-        } else {
-            System.out.println("Matriks tidak memiliki invers");
-        }
+        //if (m.determinantCofactor(m) != 0) {
+          //  m.inverseOBE(m).displayMatrix();
+        //} else {
+        //    System.out.println("Matriks tidak memiliki invers");
+        //}
+        System.out.println(m.cramerRule(m));
     }
 }

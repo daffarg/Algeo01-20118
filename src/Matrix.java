@@ -669,4 +669,33 @@ public class Matrix {
     
         return mInvers;
     }
+
+    public ArrayList<Double> cramerRule (Matrix m) {
+    // Prekondisi: determinan matriks m != 0
+    // Mengembalikan solusi dari SPL dalam bentuk ArrayList
+    // KAMUS LOKAL
+        Matrix mCopy;
+        int i, j, k;
+        ArrayList<Double> solution;
+    // ALGORITMA
+        // Inisialisasi ArrayList solution untuk menampung solusi dari SPL
+        solution = new ArrayList<Double>();
+        // Inisialisasi mCopy dengan ukuran kolom yg lebih kecil satu daripada m
+        mCopy = new Matrix(m.RowEff, m.ColEff - 1);
+
+        for (k = 0; k < m.ColEff - 1; k ++) {
+            for (i = 0; i < m.RowEff; i ++) {
+                for (j = 0; j < m.ColEff - 1; j ++) {
+                    if (k == j) {
+                        mCopy.Content[i][j] = m.Content[i][m.ColEff-1];
+                    } else {
+                        mCopy.Content[i][j] = m.Content[i][j];
+                    }
+                }
+            }
+            // Menambahkan setiap solusi SPL yang didaptkan  ke dalam solution
+            solution.add(mCopy.determinantCofactor(mCopy) / m.determinantCofactor(m));
+        }
+        return solution;
+    }
 }
