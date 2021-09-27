@@ -21,10 +21,9 @@ public class Determinant {
     public void OBEMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL
         Matrix m;
-        // ALGORITMA
-        
-        m = new Matrix(fileName);
 
+        // ALGORITMA
+        m = new Matrix(fileName);
         System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
     }
 
@@ -45,10 +44,9 @@ public class Determinant {
     public void cofactorMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL
         Matrix m;
+
         // ALGORITMA
-        
         m = new Matrix(fileName);
-        
         System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
     }
 }
