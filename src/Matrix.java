@@ -248,7 +248,30 @@ public class Matrix {
             System.out.print("\n");
         }
     }
-    
+
+    public static void writeFile(String file, Matrix M) {
+        try {
+            File F = new File(file);
+            if (!(F.exists())) {
+                F.createNewFile();
+            }
+
+            FileWriter FF = new FileWriter(file);
+            PrintWriter print = new PrintWriter(FF);
+
+            for (int i = 0; i < M.RowEff; i++) {
+                for (int j = 0; j < M.ColEff; j++) {
+                    M.Content[i][j] += 0;
+                    print.printf("%.2f ", M.Content[i][j]);
+                }
+                print.printf("\n");
+            }
+
+            print.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /* **** Operasi-Operasi Matriks Dasar **** */
     public Matrix multiplyMatrix (Matrix m1, Matrix m2) {
