@@ -29,6 +29,12 @@ public class SPL {
     }
 
     public void inversMethod(Matrix m) {
+        // Memecahkan SPL dengan metode matriks balikan
+        // KAMUS LOKAL
+        Matrix minv, mcons, mhasil;
+        int i, j;
+
+        // ALGORITMA
         System.out.print("Masukan jumlah baris matriks: ");
         int M = input.nextInt();
         System.out.print("Masukan jumlah kolom matriks: ");
@@ -38,6 +44,25 @@ public class SPL {
         m.ColEff = N;
         m.readMatrix();
         
+        minv = new Matrix(m.RowEff, m.ColEff-1);
+
+        for (i = 0; i < minv.RowEff; i ++) {
+            for (j = 0; j < minv.ColEff; j ++) {
+                minv.Content[i][j] = m.Content[i][j];
+            }
+        }
+
+        if (minv.isSquare(minv) && minv.determinantCofactor(minv) != 0) {
+            minv = minv.inverseCofaktor(minv);
+            mcons = new Matrix(m.RowEff, 1);
+            for (i = 0; i < m.RowEff; i ++) {
+                mcons.Content[i][0] = m.Content[i][m.ColEff-1];
+            }
+            mhasil = new Matrix(m.RowEff, 1);
+            mhasil = minv.multiplyMatrix(minv, mcons);
+        } else {
+            System.out.println("Matriks tidak mempunyai invers.");
+        }
     }
 
     public void tulisSPL(Matrix m) {
