@@ -7,39 +7,27 @@ public class Determinant {
         // KAMUS LOKAL
 
         // ALGORITMA
-        System.out.print("Masukan jumlah baris matriks: ");
-        int M = input.nextInt();
-        System.out.print("Masukan jumlah kolom matriks: ");
+        System.out.print("Masukan jumlah baris dan kolom matriks: ");
         int N = input.nextInt();
         
-        m.RowEff = M;
+        m.RowEff = N;
         m.ColEff = N;
         m.readMatrix();
 
-        if (m.isSquare(m)) {
-            System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
-        } else {
-            System.out.println("Matriks bukan matriks persegi.");
-        }
+        System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
     }
 
     public void cofactorMethod(Matrix m) {
         // KAMUS LOKAL
 
         // ALGORITMA
-        System.out.print("Masukan jumlah baris matriks: ");
-        int M = input.nextInt();
-        System.out.print("Masukan jumlah kolom matriks: ");
+        System.out.print("Masukan jumlah baris dan kolom matriks: ");
         int N = input.nextInt();
         
-        m.RowEff = M;
+        m.RowEff = N;
         m.ColEff = N;
         m.readMatrix();
 
-        if (m.isSquare(m)) {
-            System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
-        } else {
-            System.out.println("Matriks bukan matriks persegi.");
-        }
+        System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
     }
 }
