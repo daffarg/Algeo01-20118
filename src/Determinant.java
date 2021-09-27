@@ -4,6 +4,9 @@ public class Determinant {
     Scanner input = new Scanner(System.in);
 
     public void OBEMethod(Matrix m) {
+        // KAMUS LOKAL
+
+        // ALGORITMA
         System.out.print("Masukan jumlah baris matriks: ");
         int M = input.nextInt();
         System.out.print("Masukan jumlah kolom matriks: ");
@@ -15,6 +18,26 @@ public class Determinant {
 
         if (m.isSquare(m)) {
             System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+        } else {
+            System.out.println("Matriks bukan matriks persegi.");
+        }
+    }
+
+    public void cofactorMethod(Matrix m) {
+        // KAMUS LOKAL
+
+        // ALGORITMA
+        System.out.print("Masukan jumlah baris matriks: ");
+        int M = input.nextInt();
+        System.out.print("Masukan jumlah kolom matriks: ");
+        int N = input.nextInt();
+        
+        m.RowEff = M;
+        m.ColEff = N;
+        m.readMatrix();
+
+        if (m.isSquare(m)) {
+            System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
         } else {
             System.out.println("Matriks bukan matriks persegi.");
         }
