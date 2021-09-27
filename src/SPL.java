@@ -69,6 +69,15 @@ public class SPL {
         // KAMUS LOKAL 
         ArrayList<Double> arrayHasil;
         // ALGORITMA
+        System.out.print("Masukan jumlah baris matriks: ");
+        int M = input.nextInt();
+        System.out.print("Masukan jumlah kolom matriks: ");
+        int N = input.nextInt();
+        
+        m.RowEff = M;
+        m.ColEff = N;
+        m.readMatrix();
+        
         arrayHasil = new ArrayList<Double>();
 
         if (m.isSquare(m) && m.determinantCofactor(m) != 0) {
