@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Determinant {
@@ -17,6 +18,16 @@ public class Determinant {
         System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
     }
 
+    public void OBEMethod(String fileName) throws FileNotFoundException {
+        // KAMUS LOKAL
+        Matrix m;
+        // ALGORITMA
+        
+        m = new Matrix(fileName);
+
+        System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+    }
+
     public void cofactorMethod(Matrix m) {
         // KAMUS LOKAL
 
@@ -28,6 +39,16 @@ public class Determinant {
         m.ColEff = N;
         m.readMatrix();
 
+        System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
+    }
+
+    public void cofactorMethod(String fileName) throws FileNotFoundException {
+        // KAMUS LOKAL
+        Matrix m;
+        // ALGORITMA
+        
+        m = new Matrix(fileName);
+        
         System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
     }
 }
