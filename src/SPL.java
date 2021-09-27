@@ -65,6 +65,21 @@ public class SPL {
         }
     }
 
+    public void cramerMethod(Matrix m) {
+        // KAMUS LOKAL 
+        ArrayList<Double> arrayHasil;
+        // ALGORITMA
+        arrayHasil = new ArrayList<Double>();
+
+        if (m.isSquare(m) && m.determinantCofactor(m) != 0) {
+            arrayHasil = m.cramerRule(m);
+        } else {
+            System.out.println("Determinan matriks sama dengan nol. Tidak bisa menggunakan metode cramer.");
+        }
+        
+
+    }   
+
     public void tulisSPL(Matrix m) {
         int i, j;
         int count0 = 0;
