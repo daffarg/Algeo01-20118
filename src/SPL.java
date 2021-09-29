@@ -51,6 +51,7 @@ public class SPL {
         if (count0 ==  m.ColEff - 1) {
             solution.add("SPL tidak mempunyai solusi");
         } else if (count0 == m.ColEff) {
+            m.gaussJordanElimination(m);
             k = 0;
             for (i = m.RowEff-1; i >= 0; i --) {
                 countRow0 = 0;
@@ -77,18 +78,18 @@ public class SPL {
                     for (int kol = j+1; kol < m.ColEff-1; kol ++) {
                         //System.out.println(kol);
                         if (m.Content[i][kol] != 0) {
-                            temp += " + " + (-m.Content[i][kol]) + "r" + k;
+                            temp += " + " + (-m.Content[i][kol]) + "r" + (kol - 1 -j) ;
                             System.out.println(temp);
                         }
                         // GAUSS
-                        /* 1 1 2 4
+                          /*1 1 2 4
                            0 1 1 2
                            0 0 0 0 */
                     }
                     solution.add("x" + (i + 1) + " = " + temp);
-                    //System.out.println(solution);
-                }
-            }  
+                    //System.out.println(solution); 
+                } 
+            } 
         } else {
             double xvalue;
             for (i = m.RowEff-1; i >= 0; i --) {

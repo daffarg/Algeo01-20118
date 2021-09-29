@@ -36,6 +36,7 @@ public class Main {
         //System.out.println(m.cramerRule(m)); */
         SPL.gaussMethod(m);
         SPL.printSolution(SPL.returnSolution(m));
+        m.displayMatrix();
 
     }
 }
