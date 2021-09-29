@@ -24,9 +24,9 @@ public class Invers {
             System.out.println("Solusi berhasil ditulis ke dalam file.");
         } else {
             try {
-                FileWriter myWriter = new FileWriter(fileOut);
-                myWriter.write("Matriks tidak mempunyai matriks balikan.");
-                myWriter.close();
+                FileWriter writer = new FileWriter(fileOut);
+                writer.write("Matriks tidak mempunyai matriks balikan.");
+                writer.close();
                 System.out.println("Matriks tidak mempunyai matriks balikan. Keterangan berhasil ditulis ke dalam file.");
               } catch (Exception e) {
                 e.printStackTrace();
@@ -59,9 +59,9 @@ public class Invers {
             System.out.println("Solusi berhasil ditulis ke dalam file.");
         } else {
             try {
-                FileWriter myWriter = new FileWriter(fileOut);
-                myWriter.write("Matriks tidak mempunyai matriks balikan.");
-                myWriter.close();
+                FileWriter writer = new FileWriter(fileOut);
+                writer.write("Matriks tidak mempunyai matriks balikan.");
+                writer.close();
                 System.out.println("Matriks tidak mempunyai matriks balikan. Keterangan berhasil ditulis ke dalam file.");
               } catch (Exception e) {
                 e.printStackTrace();
@@ -89,9 +89,9 @@ public class Invers {
             System.out.println("Solusi berhasil ditulis ke dalam file.");
         } else {
             try {
-                FileWriter myWriter = new FileWriter(fileOut);
-                myWriter.write("Matriks tidak mempunyai matriks balikan.");
-                myWriter.close();
+                FileWriter writer = new FileWriter(fileOut);
+                writer.write("Matriks tidak mempunyai matriks balikan.");
+                writer.close();
                 System.out.println("Matriks tidak mempunyai matriks balikan. Keterangan berhasil ditulis ke dalam file.");
               } catch (Exception e) {
                 e.printStackTrace();
@@ -122,9 +122,9 @@ public class Invers {
             Matrix.writeFile(fileOut, m.inverseCofaktor(m));
         } else {
             try {
-                FileWriter myWriter = new FileWriter(fileOut);
-                myWriter.write("Matriks tidak mempunyai matriks balikan.");
-                myWriter.close();
+                FileWriter writer = new FileWriter(fileOut);
+                writer.write("Matriks tidak mempunyai matriks balikan.");
+                writer.close();
                 System.out.println("Matriks tidak mempunyai matriks balikan. Keterangan berhasil ditulis ke dalam file.");
               } catch (Exception e) {
                 e.printStackTrace();
