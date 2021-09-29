@@ -65,11 +65,22 @@ public class SPL {
                         countRow0 += 1;
                     }
                 }
+
+                int NextCountRow0 = countRow0;
+                int col;
+                for (col = j+1; col < m.ColEff; col++) {
+                    if (m.Content[i][col] == 0) {
+                        NextCountRow0 += 1;
+                    }
+                } 
+
                 //System.out.println(countRow0);
                 if (countRow0 == m.ColEff) {
                     k += 1;
                     solution.add("x" + (i + 1) + " = " + "r" + k);
                     //System.out.println(solution);
+                } else if (NextCountRow0 == m.ColEff - 1) {
+                    solution.add("x" + (i + 1) + " = " + 0);
                 } else {
                     String temp = "";
                     if (m.Content[i][m.ColEff-1] != 0) {
@@ -78,7 +89,7 @@ public class SPL {
                     for (int kol = j+1; kol < m.ColEff-1; kol ++) {
                         //System.out.println(kol);
                         if (m.Content[i][kol] != 0) {
-                            temp += " + " + (-m.Content[i][kol]) + "r" + (kol - 1 -j) ;
+                            temp += " + " + (-m.Content[i][kol]) + "r" + (m.ColEff - 1 - kol) ;
                             System.out.println(temp);
                         }
                         // GAUSS
