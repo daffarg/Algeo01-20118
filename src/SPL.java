@@ -2,6 +2,8 @@
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import javax.xml.crypto.dsig.XMLObject;
+
 public class SPL {
     static Scanner input = new Scanner(System.in);
 
@@ -103,12 +105,14 @@ public class SPL {
             } 
         } else {
             double xvalue;
+            ArrayList<Double> xvalueList = new ArrayList<Double>();
             for (i = m.RowEff-1; i >= 0; i --) {
                 String temp2 = "x" + (i + 1) + " = ";
                 xvalue = m.Content[i][m.ColEff-1];
-                for (j = i + 1; j < m.ColEff; j ++) {
-                    xvalue -= m.Content[i][j];
+                for (j = i + 1; j < m.ColEff - 1; j ++) {
+                    xvalue -= m.Content[i][j]*xvalueList.get(m.ColEff - j - 2);
                 }
+                xvalueList.add(xvalue);
                 temp2 += xvalue;
                 solution.add(temp2);
                 //System.out.println(solution.get(i));
