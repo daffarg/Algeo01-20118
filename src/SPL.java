@@ -169,21 +169,21 @@ public class SPL {
         m.gaussJordanElimination(m);
     }
 
-    public void inversMethod(Matrix m) {
+    public static void inversMethod(Matrix m) {
         // Memecahkan SPL dengan metode matriks balikan
         // KAMUS LOKAL
         Matrix minv, mcons, mhasil;
         int i, j;
 
         // ALGORITMA
-        System.out.print("Masukan jumlah baris matriks: ");
+        /* System.out.print("Masukan jumlah baris matriks: ");
         int M = input.nextInt();
         System.out.print("Masukan jumlah kolom matriks: ");
         int N = input.nextInt();
         
         m.RowEff = M;
         m.ColEff = N;
-        m.readMatrix();
+        m.readMatrix(); */
         
         minv = new Matrix(m.RowEff, m.ColEff-1);
 
@@ -201,6 +201,11 @@ public class SPL {
             }
             mhasil = new Matrix(m.RowEff, 1);
             mhasil = minv.multiplyMatrix(minv, mcons);
+            for (i = 0; i < mhasil.RowEff; i ++) {
+                for (j = 0; j < mhasil.ColEff; j ++) {
+                    System.out.println("x" + (i + 1) + " = " + mhasil.Content[i][j]);
+                }
+            }
         } else {
             System.out.println("Matriks tidak mempunyai invers.");
         }
@@ -231,6 +236,11 @@ public class SPL {
             }
             mhasil = new Matrix(m.RowEff, 1);
             mhasil = minv.multiplyMatrix(minv, mcons);
+            for (i = 0; i < mhasil.RowEff; i ++) {
+                for (j = 0; j < mhasil.ColEff; j ++) {
+                    System.out.println("x" + (i + 1) + " = " + mhasil.Content[i][j]);
+                }
+            }
         } else {
             System.out.println("Matriks tidak mempunyai invers.");
         }

@@ -277,13 +277,13 @@ public class Matrix {
     public Matrix multiplyMatrix (Matrix m1, Matrix m2) {
     // Mengalikan matriks m1 dengan m2
     // KAMUS LOKAL
-        int i, j;
+        int i, j, k;
         Matrix mHasil = new Matrix(m1.RowEff, m2.ColEff);
     // ALGORITMA
         for (i = 0; i < m1.RowEff; i++) {
             for (j = 0; j < m2.ColEff; j++) {
                 mHasil.Content[i][j] = 0;
-                for (int k = 0; k < mHasil.ColEff; k++) {
+                for (k = 0; k < m1.ColEff; k++) {
                     mHasil.Content[i][j] += m1.Content[i][k] * m2.Content[k][j];
                 }
             }
