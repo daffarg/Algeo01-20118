@@ -20,6 +20,11 @@ public class Main {
         System.out.println('\n');
         m.displayMatrix();
         System.out.println('\n');
+        System.out.println("Masukkan nama file: ");
+        String namaFile;
+        namaFile = input.next();
+
+        Invers.inversOBEMethod(m, namaFile);
         //m.copyMatrix(m, mcopy);
         //mcopy.displayMatrix();
         //System.out.println('\n');
@@ -35,7 +40,6 @@ public class Main {
         //}
         //SPL.gaussMethod(m);
         //SPL.printSolution(SPL.returnSolution(m));
-        SPL.inversMethod(m);
         //System.out.println("\n");
         //SPL.cramerMethod(m);
         //System.out.println("\n");

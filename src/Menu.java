@@ -76,14 +76,10 @@ public class Menu {
         return pilihan;
     }
     
-    public static void outputFile(Matrix M) {
-        Scanner in = new Scanner(System.in);
+    public static String outputFile(Matrix M) {
+        
         System.out.print("Apakah Anda ingin menyimpan solusi dalam file (y/n)? ");
-        char c = in.next().charAt(0);
-        if (c == 'y' || c == 'Y') {
-            System.out.print("Masukan nama file (.txt): ");
-            String file = in.next();
-            Matrix.writeFile(file, M);
-        }
+  
+        return "a";
     }
 }

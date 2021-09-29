@@ -125,14 +125,7 @@ public class SPL {
         // KAMUS LOKAL
 
         // ALGORITMA
-        /*System.out.print("Masukan jumlah baris matriks: ");
-        int M = input.nextInt();
-        System.out.print("Masukan jumlah kolom matriks: ");
-        int N = input.nextInt();
         
-        m.RowEff = M;
-        m.ColEff = N;
-        m.readMatrix(); */
         m.gaussElimination(m);
     }
 
@@ -176,14 +169,6 @@ public class SPL {
         int i, j;
 
         // ALGORITMA
-        /* System.out.print("Masukan jumlah baris matriks: ");
-        int M = input.nextInt();
-        System.out.print("Masukan jumlah kolom matriks: ");
-        int N = input.nextInt();
-        
-        m.RowEff = M;
-        m.ColEff = N;
-        m.readMatrix(); */
         
         minv = new Matrix(m.RowEff, m.ColEff-1);
 
@@ -251,15 +236,8 @@ public class SPL {
         ArrayList<Double> arrayHasil;
         int i, k, l;
         Matrix mTest;
+
         // ALGORITMA
-        /*System.out.print("Masukan jumlah baris matriks: ");
-        int M = input.nextInt();
-        System.out.print("Masukan jumlah kolom matriks: ");
-        int N = input.nextInt();
-        
-        m.RowEff = M;
-        m.ColEff = N;
-        m.readMatrix(); */
 
         mTest = new Matrix(m.RowEff, m.ColEff - 1);
         arrayHasil = new ArrayList<Double>();
