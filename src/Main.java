@@ -33,10 +33,6 @@ public class Main {
         //} else {
         //    System.out.println("Matriks tidak memiliki invers");
         //}
-        //System.out.println(m.cramerRule(m)); */
-        SPL.gaussMethod(m);
-        SPL.printSolution(SPL.returnSolution(m));
-        m.displayMatrix();
-
+        SPL.cramerMethod(m);
     }
 }

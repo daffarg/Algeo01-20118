@@ -236,23 +236,35 @@ public class SPL {
         }
     }
 
-    public void cramerMethod(Matrix m) {
+    public static void cramerMethod(Matrix m) {
         // KAMUS LOKAL 
         ArrayList<Double> arrayHasil;
+        int i, k, l;
+        Matrix mTest;
         // ALGORITMA
-        System.out.print("Masukan jumlah baris matriks: ");
+        /*System.out.print("Masukan jumlah baris matriks: ");
         int M = input.nextInt();
         System.out.print("Masukan jumlah kolom matriks: ");
         int N = input.nextInt();
         
         m.RowEff = M;
         m.ColEff = N;
-        m.readMatrix();
+        m.readMatrix(); */
 
+        mTest = new Matrix(m.RowEff, m.ColEff - 1);
         arrayHasil = new ArrayList<Double>();
 
-        if (m.isSquare(m) && m.determinantCofactor(m) != 0) {
+        for (k = 0; k < mTest.RowEff; k ++) {
+            for (l = 0; l < mTest.ColEff; l ++) {
+                mTest.Content[k][l] = m.Content[k][l];
+            }
+        }
+
+        if (mTest.isSquare(mTest) && mTest.determinantCofactor(mTest) != 0) {
             arrayHasil = m.cramerRule(m);
+            for (i = 0; i < arrayHasil.size(); i ++) {
+                System.out.println("x" + (i + 1) + " = " + arrayHasil.get(i));
+            }
         } else {
             System.out.println("Determinan matriks sama dengan nol. Tidak bisa menggunakan metode cramer.");
         }
@@ -262,16 +274,26 @@ public class SPL {
 
     public void cramerMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL 
-        Matrix m;
+        int i, k, l;
+        Matrix m, mTest;
         ArrayList<Double> arrayHasil;
 
         // ALGORITMA
         m = new Matrix(fileName);
-
+        mTest = new Matrix(m.RowEff, m.ColEff - 1);
         arrayHasil = new ArrayList<Double>();
 
-        if (m.isSquare(m) && m.determinantCofactor(m) != 0) {
+        for (k = 0; k < mTest.RowEff; k ++) {
+            for (l = 0; l < mTest.ColEff; l ++) {
+                mTest.Content[k][l] = m.Content[k][l];
+            }
+        }
+
+        if (mTest.isSquare(mTest) && mTest.determinantCofactor(mTest) != 0) {
             arrayHasil = m.cramerRule(m);
+            for (i = 0; i < arrayHasil.size(); i ++) {
+                System.out.println("x" + (i + 1) + " = " + arrayHasil.get(i));
+            }
         } else {
             System.out.println("Determinan matriks sama dengan nol. Tidak bisa menggunakan metode cramer.");
         }
