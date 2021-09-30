@@ -67,8 +67,8 @@ public class Menu {
 
     public static int MenuInvers() {
         Scanner in = new Scanner(System.in);
-        System.out.println("\n1. Metode Adjoin");
-        System.out.println("2. Metode Eliminasi Gauss-Jordan\n==============");
+        System.out.println("\n1. Metode Eliminasi Gauss-Jordan");
+        System.out.println("2. Metode Adjoin\n==============");
         System.out.print("Masukan: ");
 
         int pilihan = in.nextInt();
