@@ -16,7 +16,7 @@ public class Main {
 
         
         //Matrix mcopy = new Matrix(3,3);
-        m.readMatrix();
+        /*m.readMatrix();
         System.out.println('\n');
         m.displayMatrix();
         System.out.println('\n');
@@ -24,7 +24,7 @@ public class Main {
         String namaFile;
         namaFile = input.next();
 
-        Invers.inversOBEMethod(m, namaFile);
+        Invers.inversOBEMethod(m, namaFile); */
         //m.copyMatrix(m, mcopy);
         //mcopy.displayMatrix();
         //System.out.println('\n');
@@ -43,5 +43,7 @@ public class Main {
         //System.out.println("\n");
         //SPL.cramerMethod(m);
         //System.out.println("\n");
+        Regresi.readRegresi(m);
+        m.displayMatrix();
     }
 }

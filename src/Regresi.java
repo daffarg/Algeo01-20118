@@ -1,8 +1,7 @@
 import java.util.*;
-
 import java.io.*;
-
-import java.lang.Math;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
 
 public class Regresi {
     static Scanner input = new Scanner(System.in);
@@ -12,7 +11,6 @@ public class Regresi {
         int i, j, k;
         double val;
         ArrayList<ArrayList<Double>> data = new ArrayList<ArrayList<Double>>();
-        ArrayList<Double> dataRow = new ArrayList<Double>();
 
         // ALGORITMA
         System.out.println("Masukkan jumlah peubah: ");
@@ -20,19 +18,15 @@ public class Regresi {
         System.out.println("Masukkan jumlah sampel: ");
         numOfData = input.nextInt();
 
-        // Inisialisasi array untuk menampung setiap sampel
-        for (i = 0; i < numOfFac + 1; i ++) {
-            dataRow.add(0.0);
-        }
 
         // Membaca data sebanyak numOfData dengan peubah sebanyak numOfFac + 1 (tambah 1 karena membaca nilai y juga)
         for (i = 0; i < numOfData; i ++) {
+            data.add(new ArrayList<Double>());
+            System.out.println("Masukkan data untuk sampel ke-" + (i + 1));
             for (j = 0; j < numOfFac + 1; j ++) {
-                System.out.println("Masukkan x" + (j + 1) + "untuk sampel ke-" + (i + 1));
                 val = input.nextDouble();
-                dataRow.set(j, val);
+                data.get(i).add(val);
             }
-            data.add(dataRow);
         }
 
         m.RowEff = numOfFac + 1;
@@ -65,27 +59,7 @@ public class Regresi {
                     }
                 }
             }
-        }
-
-        // // Mengisi kolom pertama dari baris kedua
-
-        // for (i = 1; i < m.RowEff; i ++) {
-        //     m.Content[i][0] = 0;
-        //     for (k = 0; k < numOfData; k ++) {
-        //         m.Content[i][0] += data.get(k).get(i - 1);
-        //     }
-        // }
-
-        // // Mengisi elemen matriks sisanya
-
-        // for (i = 1; i < m.RowEff; i ++) {
-        //     for (j = 1; j < m.ColEff; j ++) {
-        //         m.Content[i][j] = 0;
-        //         for (k = 0; k < numOfData; k ++) {
-        //             m.Content[i][j] += data.get(k).get(i) * data.get(k).get(i - 1);
-        //         }
-        //     }
-        // }
+        } 
     }
 
     public static void readRegresi(Matrix m, String fileName) throws FileNotFoundException {
@@ -123,25 +97,53 @@ public class Regresi {
                 }
             }
         }
+    }
 
-        // // Mengisi kolom pertama dari baris kedua
+    public static double solutionRegression(Matrix m) {
+        // KAMUS LOKAL
+        ArrayList<Double> valcons;
+        ArrayList<Double> dataX;
+        int i;
+        double xval;
+        double est;
 
-        // for (i = 1; i < m.RowEff; i ++) {
-        //     m.Content[i][0] = 0;
-        //     for (k = 0; k < numOfData; k ++) {
-        //         m.Content[i][0] += data.get(k).get(i - 1);
-        //     }
-        // }
+        // ALGORITMA
 
-        // // Mengisi elemen matriks sisanya
+        // Memasukkan solusi SPL ke dalam array list
+        m.gaussJordanElimination(m);
+        valcons = new ArrayList<Double>();
+        for (i = 0; i < m.RowEff; i ++) {
+            valcons.add(m.Content[i][m.ColEff-1]);
+        }
 
-        // for (i = 1; i < m.RowEff; i ++) {
-        //     for (j = 1; j < m.ColEff; j ++) {
-        //         m.Content[i][j] = 0;
-        //         for (k = 0; k < numOfData; k ++) {
-        //             m.Content[i][j] += data.get(k).get(i) * data.get(k).get(i - 1);
-        //         }
-        //     }
-        // }
+        // Meminta input user 
+        dataX = new ArrayList<Double>();
+        System.out.println("Masukkan nilai-nilai x yang akan ditaksir: ");
+        for (i = 0; i < m.RowEff-1; i ++) {
+            xval = input.nextDouble();
+            dataX.add(xval);
+        }
+
+        // Menghitung nilai taksiran
+        est = valcons.get(0);
+        for (i = 1; i < m.RowEff; i ++) {
+            est += valcons.get(i)*dataX.get(i);
+        }
+        return est;
+    }
+
+    public void returnEstimate(double x) {
+        System.out.println("Taksiran nilai-nilai x = " + x);
+    }
+
+    public void returnEstimate(double x, String fileOut) {
+        try {
+            FileWriter writer = new FileWriter(fileOut);
+            writer.write(String.valueOf("Taksiran nilai-nilai x = " + x));
+            writer.close();
+            System.out.println("Jawaban berhasil ditulis ke dalam file.");
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
     }
 }
