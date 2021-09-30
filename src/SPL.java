@@ -2,7 +2,6 @@
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.io.FileWriter;
-import javax.xml.crypto.dsig.XMLObject;
 
 public class SPL {
     static Scanner input = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class SPL {
         try {
             FileWriter writer = new FileWriter(fileOut);
             for (i = 0; i < s.size(); i ++) {
-                writer.write(s.get(i));
+                writer.write(s.get(i) + "\n");
             }
             writer.close();
             System.out.println("Jawaban berhasil ditulis ke dalam file.");
@@ -240,13 +239,14 @@ public class SPL {
         m.gaussElimination(m);
     }
 
-    public void gaussMethod(String fileName) throws FileNotFoundException {
+    public static Matrix gaussMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL
         Matrix m;
 
         //ALGORITMA
         m = new Matrix(fileName);
         m.gaussElimination(m);
+        return m;
     }
 
     public void gaussJordanMethod(Matrix m) {
@@ -256,13 +256,14 @@ public class SPL {
         m.gaussJordanElimination(m);
     }
 
-    public void gaussJordanMethod(String fileName) throws FileNotFoundException {
+    public static Matrix gaussJordanMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL
         Matrix m;
 
         // ALGORITMA
         m = new Matrix(fileName);
         m.gaussJordanElimination(m);
+        return m;
     }
 
     public static void inversMethod(Matrix m) {
@@ -327,7 +328,7 @@ public class SPL {
                 mhasil = minv.multiplyMatrix(minv, mcons);
                 for (i = 0; i < mhasil.RowEff; i ++) {
                     for (j = 0; j < mhasil.ColEff; j ++) {
-                        writer.write(String.valueOf("x" + (i + 1) + " = " + mhasil.Content[i][j]));
+                        writer.write(String.valueOf("x" + (i + 1) + " = " + mhasil.Content[i][j] + "\n"));
                     }
                 }
                 writer.close();
@@ -341,7 +342,7 @@ public class SPL {
         }
     }
 
-    public void inversMethod(String fileName) throws FileNotFoundException {
+    public static void inversMethod(String fileName) throws FileNotFoundException {
         // Memecahkan SPL dengan metode matriks balikan
         // KAMUS LOKAL
         Matrix m, minv, mcons, mhasil;
@@ -405,7 +406,7 @@ public class SPL {
                 mhasil = minv.multiplyMatrix(minv, mcons);
                 for (i = 0; i < mhasil.RowEff; i ++) {
                     for (j = 0; j < mhasil.ColEff; j ++) {
-                        writer.write(String.valueOf("x" + (i + 1) + " = " + mhasil.Content[i][j]));
+                        writer.write(String.valueOf("x" + (i + 1) + " = " + mhasil.Content[i][j] + "\n"));
                     }
                 }
                 writer.close();
@@ -470,7 +471,7 @@ public class SPL {
             if (mTest.isSquare(mTest) && mTest.determinantCofactor(mTest) != 0) {
                 arrayHasil = m.cramerRule(m);
                 for (i = 0; i < arrayHasil.size(); i ++) {
-                    writer.write(String.valueOf("x" + (i + 1) + " = " + arrayHasil.get(i)));
+                    writer.write(String.valueOf("x" + (i + 1) + " = " + arrayHasil.get(i) + "\n"));
                 }
                 writer.close();
             } else {
@@ -483,7 +484,7 @@ public class SPL {
         }
     }   
 
-    public void cramerMethod(String fileName) throws FileNotFoundException {
+    public static void cramerMethod(String fileName) throws FileNotFoundException {
         // KAMUS LOKAL 
         int i, k, l;
         Matrix m, mTest;
@@ -534,7 +535,7 @@ public class SPL {
             if (mTest.isSquare(mTest) && mTest.determinantCofactor(mTest) != 0) {
                 arrayHasil = m.cramerRule(m);
                 for (i = 0; i < arrayHasil.size(); i ++) {
-                    writer.write(String.valueOf("x" + (i + 1) + " = " + arrayHasil.get(i)));
+                    writer.write(String.valueOf("x" + (i + 1) + " = " + arrayHasil.get(i) + "\n"));
                 }
                 writer.close();
             } else {

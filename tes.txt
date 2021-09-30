@@ -1,1 +1,3 @@
-Matriks tidak mempunyai matriks balikan.
+2 3 4 1
+8 7 2 1
+0 8 2 1

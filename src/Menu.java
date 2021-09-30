@@ -57,7 +57,7 @@ public class Menu {
     public static int MenuDeterminan() {
         Scanner in = new Scanner(System.in);
         System.out.println("\n1. Metode Operasi Baris Elementer");
-        System.out.println("2. Metode Matriks Kofaktor\n==============");
+        System.out.println("2. Metode Ekspansi Kofaktor\n==============");
         System.out.print("Masukan: ");
 
         int pilihan = in.nextInt();
@@ -76,10 +76,10 @@ public class Menu {
         return pilihan;
     }
     
-    public static String outputFile(Matrix M) {
-        
+    public static char outputFile() {
+        Scanner in = new Scanner(System.in);
         System.out.print("Apakah Anda ingin menyimpan solusi dalam file (y/n)? ");
-  
-        return "a";
+        char input = in.next().charAt(0);
+        return input;
     }
 }

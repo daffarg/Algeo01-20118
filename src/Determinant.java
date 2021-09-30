@@ -7,22 +7,30 @@ public class Determinant {
         // KAMUS LOKAL
 
         // ALGORITMA
-
-        System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+        if (m.isSquare(m)) {
+          	System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+        } else {
+          	System.out.println("Matriks tidak mempunyai determinan.");
+        }
     }
 
     public static void OBEMethod(Matrix m, String fileOut) {
         // KAMUS LOKAL
 
         // ALGORITMA
-        try {
-            FileWriter writer = new FileWriter(fileOut);
-            writer.write(String.valueOf(m.determinantOBE(m)));
-            writer.close();
-            System.out.println("Jawaban berhasil ditulis ke dalam file.");
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
+		try {
+			FileWriter writer = new FileWriter(fileOut);
+			if (m.isSquare(m)) {
+				writer.write(String.valueOf(m.determinantOBE(m)));	
+				System.out.println("Jawaban berhasil ditulis ke dalam file.");
+			} else {
+				writer.write("Matriks tidak mempunyai determinan.");
+				System.out.println("Matriks tidak mempunyai determinan. Keterangan berhasil ditulis ke dalam file.");
+			}
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     public static void OBEMethod(String fileName) throws FileNotFoundException {
@@ -31,7 +39,11 @@ public class Determinant {
 
         // ALGORITMA
         m = new Matrix(fileName);
-        System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+		if (m.isSquare(m)) {
+			System.out.println("Determinan matriks adalah " + m.determinantOBE(m));
+	  	} else {
+			System.out.println("Matriks tidak mempunyai determinan.");
+	  	}
     }
 
     public static void OBEMethod(String fileName, String fileOut) throws FileNotFoundException {
@@ -42,9 +54,14 @@ public class Determinant {
         m = new Matrix(fileName);
         try {
             FileWriter writer = new FileWriter(fileOut);
-            writer.write(String.valueOf(m.determinantOBE(m)));
+			if (m.isSquare(m)) {
+				writer.write(String.valueOf(m.determinantOBE(m)));
+				System.out.println("Jawaban berhasil ditulis ke dalam file.");
+			} else {
+				writer.write("Matriks tidak mempunyai determinan.");
+				System.out.println("Matriks tidak mempunyai determinan. Keterangan berhasil ditulis ke dalam file.");
+			}
             writer.close();
-            System.out.println("Jawaban berhasil ditulis ke dalam file.");
           } catch (Exception e) {
             e.printStackTrace();
           }
@@ -54,8 +71,12 @@ public class Determinant {
         // KAMUS LOKAL
 
         // ALGORITMA
-
-        System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
+		if (m.isSquare(m)) {
+			System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
+		} else {
+			System.out.println("Matriks tidak mempunyai determinan.");
+		}
+        
     }
 
     public static void cofactorMethod(Matrix m, String fileOut) {
@@ -64,9 +85,13 @@ public class Determinant {
         // ALGORITMA
         try {
             FileWriter writer = new FileWriter(fileOut);
-            writer.write(String.valueOf(m.determinantCofactor(m)));
+			if (m.isSquare(m)) {
+				writer.write(String.valueOf(m.determinantCofactor(m)));
+				System.out.println("Jawaban berhasil ditulis ke dalam file.");
+			} else {
+				System.out.println("Matriks tidak mempunyai determinan. Keterangan berhasil ditulis ke dalam file.");
+			}
             writer.close();
-            System.out.println("Jawaban berhasil ditulis ke dalam file.");
           } catch (Exception e) {
             e.printStackTrace();
           }
@@ -79,7 +104,11 @@ public class Determinant {
 
         // ALGORITMA
         m = new Matrix(fileName);
-        System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
+		if (m.isSquare(m)) {
+			System.out.println("Determinan matriks adalah " + m.determinantCofactor(m));
+		} else {
+			System.out.println("Matriks tidak mempunyai determinan.");
+		}
     }
 
     public static void cofactorMethod(String fileName, String fileOut) throws FileNotFoundException {
@@ -90,9 +119,13 @@ public class Determinant {
         m = new Matrix(fileName);
         try {
             FileWriter writer = new FileWriter(fileOut);
-            writer.write(String.valueOf(m.determinantCofactor(m)));
+			if (m.isSquare(m)) {
+				writer.write(String.valueOf(m.determinantCofactor(m)));
+				System.out.println("Jawaban berhasil ditulis ke dalam file.");
+			} else {
+				System.out.println("Matriks tidak mempunyai determinan. Keterangan berhasil ditulis ke dalam file.");
+			}
             writer.close();
-            System.out.println("Jawaban berhasil ditulis ke dalam file.");
           } catch (Exception e) {
             e.printStackTrace();
           }
