@@ -130,7 +130,7 @@ public class Interpolasi {
         }
     }
 
-    public static void interpolasiKeyInput(String fileName) throws FileNotFoundException {
+    public static void interpolasiFileInput(String fileName) throws FileNotFoundException {
         // PREKONDISI: SPL mempunyai solusi tunggal
         // KAMUS LOKAL
         ArrayList<Double> valcons;
@@ -160,7 +160,7 @@ public class Interpolasi {
         System.out.println("Nilai fungsi pada x = " + x + " dapat ditaksir dengan nilai " + result);
     }
 
-    public static void interpolasiKeyInput(String fileName, String fileOut) throws FileNotFoundException {
+    public static void interpolasiFileInput(String fileName, String fileOut) throws FileNotFoundException {
         // PREKONDISI: SPL mempunyai solusi tunggal
         // KAMUS LOKAL
         ArrayList<Double> valcons;
