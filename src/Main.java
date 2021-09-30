@@ -431,8 +431,89 @@ public class Main {
 					default:
 						System.out.println("Masukan salah.");	
 				}
-			}
-
+			} else if (selection2 == 4) {
+				// PREKONDISI INTERPOLASI: SPL MEMPUNYAI SOLUSI TUNGGAL
+				jenisIn = Menu.jenisInput();
+				while (jenisIn != 1 && jenisIn != 2) { // Menanyakan kepada user sumber input (command line atau file)
+					System.out.print("Input salah. Silakan ulangi.");
+					jenisIn = input.nextInt();
+				}
+				if (jenisIn == 1) { // Jika sumber input adalah command line
+					// INPUT DARI COMMAND LINE
+					jenisOut = Menu.outputFile();
+					while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
+						System.out.print("Input salah. Silakan ulangi.");
+						jenisOut = input.next().charAt(0);
+					}
+					if (jenisOut == 'y' || jenisOut == 'Y') {
+						// OUTPUT KE FILE
+						System.out.print("Masukkan nama file (.txt): ");
+						fileOut = input.next();
+						Interpolasi.interpolasiKeyInput(m, fileOut);
+					} else {
+						// OUTPUT KE LAYAR
+						Interpolasi.interpolasiKeyInput(m);
+					}
+				} else {
+					// INPUT DARI FILE
+					System.out.print("Masukkan nama file (.txt): ");
+					fileName = input.next();
+					jenisOut = Menu.outputFile();
+					while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
+						System.out.print("Input salah. Silakan ulangi.");
+						jenisOut = input.next().charAt(0);
+					}
+					if (jenisOut == 'y' || jenisOut == 'Y') {
+						// OUTPUT KE FILE
+						System.out.print("Masukkan nama file (.txt): ");
+						fileOut = input.next();
+						Interpolasi.interpolasiFileInput(fileName, fileOut);
+					} else {
+						Interpolasi.interpolasiFileInput(fileName);
+					}
+				}
+			} else if (selection == 5) {
+				jenisIn = Menu.jenisInput();
+				while (jenisIn != 1 && jenisIn != 2) { // Menanyakan kepada user sumber input (command line atau file)
+					System.out.print("Input salah. Silakan ulangi.");
+					jenisIn = input.nextInt();
+				}
+				if (jenisIn == 1) {
+					Regresi.readRegresi(m);
+					// INPUT DARI COMMAND LINE
+					while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
+						System.out.print("Input salah. Silakan ulangi.");
+						jenisOut = input.next().charAt(0);
+					}
+					if (jenisOut == 'y' || jenisOut == 'Y') {
+						// OUTPUT KE FILE
+						System.out.print("Masukkan nama file (.txt): ");
+						fileOut = input.next();
+						Regresi.returnEstimate(Regresi.solutionRegression(m), fileOut);
+					} else {
+						Regresi.returnEstimate(Regresi.solutionRegression(m));
+					}
+				} else {
+					System.out.print("Masukkan nama file (.txt): ");
+					fileName = input.next();
+					Regresi.readRegresi(m, fileName);
+					jenisOut = Menu.outputFile();
+					while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
+						System.out.print("Input salah. Silakan ulangi.");
+						jenisOut = input.next().charAt(0);
+					}
+					if (jenisOut == 'y' || jenisOut == 'Y') {
+						// OUTPUT KE FILE
+						System.out.print("Masukkan nama file (.txt): ");
+						fileOut = input.next();
+						Regresi.returnEstimate(Regresi.solutionRegression(m), fileOut);
+					} else {
+						Regresi.returnEstimate(Regresi.solutionRegression(m));
+					}
+				}
+			} else if (selection != 6) {
+				System.out.println("Masukan salah. Mohon ulangi.");
+			}	
 		}
 	}
 }

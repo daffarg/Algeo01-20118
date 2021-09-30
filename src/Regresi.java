@@ -132,11 +132,11 @@ public class Regresi {
         return est;
     }
 
-    public void returnEstimate(double x) {
+    public static void returnEstimate(double x) {
         System.out.println("Taksiran nilai-nilai x = " + x);
     }
 
-    public void returnEstimate(double x, String fileOut) {
+    public static void returnEstimate(double x, String fileOut) {
         try {
             FileWriter writer = new FileWriter(fileOut);
             writer.write(String.valueOf("Taksiran nilai-nilai x = " + x));
