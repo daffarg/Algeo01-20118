@@ -50,10 +50,24 @@ public class Regresi {
                 }
             }
         }
-        
+
+        // Mengisi kolom pertama dari baris kedua
+
         for (i = 1; i < m.RowEff; i ++) {
-            for (j = 0; j < m.ColEff; j++) {
-                
+            m.Content[i][0] = 0;
+            for (k = 0; k < numOfData; k ++) {
+                m.Content[i][0] += data.get(k).get(i - 1);
+            }
+        }
+
+        // Mengisi elemen matriks sisanya
+
+        for (i = 1; i < m.RowEff; i ++) {
+            for (j = 1; j < m.ColEff; j ++) {
+                m.Content[i][j] = 0;
+                for (k = 0; k < numOfData; k ++) {
+                    m.Content[i][j] += data.get(k).get(i) * data.get(k).get(i - 1);
+                }
             }
         }
 
