@@ -87,7 +87,7 @@ public class Main {
 								m.RowEff = M;
 								m.ColEff = N;
 								m.readMatrix();
-								SPL.gaussMethod(m);
+								SPL.gaussJordanMethod(m);
 								jenisOut = Menu.outputFile();
 								while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
 									System.out.print("Input salah. Silakan ulangi.");
@@ -431,7 +431,7 @@ public class Main {
 					default:
 						System.out.println("Masukan salah.");	
 				}
-			} else if (selection2 == 4) {
+			} else if (selection == 4) {
 				// PREKONDISI INTERPOLASI: SPL MEMPUNYAI SOLUSI TUNGGAL
 				jenisIn = Menu.jenisInput();
 				while (jenisIn != 1 && jenisIn != 2) { // Menanyakan kepada user sumber input (command line atau file)
@@ -481,6 +481,7 @@ public class Main {
 				if (jenisIn == 1) {
 					Regresi.readRegresi(m);
 					// INPUT DARI COMMAND LINE
+					jenisOut = Menu.outputFile();
 					while (jenisOut != 'y' && jenisOut != 'Y' && jenisOut != 'n' && jenisOut != 'N') {
 						System.out.print("Input salah. Silakan ulangi.");
 						jenisOut = input.next().charAt(0);

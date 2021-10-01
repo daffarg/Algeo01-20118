@@ -127,7 +127,7 @@ public class Regresi {
         // Menghitung nilai taksiran
         est = valcons.get(0);
         for (i = 1; i < m.RowEff; i ++) {
-            est += valcons.get(i)*dataX.get(i);
+            est += valcons.get(i)*dataX.get(i-1);
         }
         return est;
     }

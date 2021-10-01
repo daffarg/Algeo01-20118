@@ -50,7 +50,7 @@ public class Interpolasi {
         // PREKONDISI: SPL mempunyai solusi tunggal
         // KAMUS LOKAL
         ArrayList<Double> valcons;
-        int N, i, j;
+        int N, i, j, k;
         double x, elmtx, elmty;
 
         // ALGORITMA
@@ -75,10 +75,12 @@ public class Interpolasi {
             valcons.add(m.Content[i][m.ColEff-1]);
         }
 
+        System.out.println(valcons);
+
         System.out.println("Masukkan nilai yang ingin ditaksir: ");
         x = input.nextDouble();
 
-        int result = 0;
+        double result = 0;
         for (i = 0; i < valcons.size(); i ++) {
             result += Math.pow(x, i) * valcons.get(i);
         }
@@ -117,7 +119,7 @@ public class Interpolasi {
         System.out.println("Masukkan nilai yang ingin ditaksir: ");
         x = input.nextDouble();
 
-        int result = 0;
+        double result = 0;
         for (i = 0; i < valcons.size(); i ++) {
             result += Math.pow(x, i) * valcons.get(i);
         }
@@ -153,7 +155,7 @@ public class Interpolasi {
         System.out.println("Masukkan nilai yang ingin ditaksir: ");
         x = input.nextDouble();
 
-        int result = 0;
+        double result = 0;
         for (i = 0; i < valcons.size(); i ++) {
             result += Math.pow(x, i) * valcons.get(i);
         }
@@ -183,7 +185,7 @@ public class Interpolasi {
         System.out.println("Masukkan nilai yang ingin ditaksir: ");
         x = input.nextDouble();
 
-        int result = 0;
+        double result = 0;
         for (i = 0; i < valcons.size(); i ++) {
             result += Math.pow(x, i) * valcons.get(i);
         }

@@ -70,6 +70,12 @@ public class SPL {
         } else if (count0 == m.ColEff) {
             m.gaussJordanElimination(m);
             k = 0;
+            if (m.RowEff + 1 < m.ColEff) {
+                for (i = m.RowEff; i < m.ColEff - 1; i ++) {
+                    k++;
+                    solution.add("x" + (i + 1) + " = " + "r" + k);
+                }
+            }
             for (i = m.RowEff-1; i >= 0; i --) {
                 countRow0 = 0;
                 found = false;
@@ -90,12 +96,9 @@ public class SPL {
                         NextCountRow0 += 1;
                     }
                 } 
-
-                //System.out.println(countRow0);
                 if (countRow0 == m.ColEff) {
                     k += 1;
                     solution.add("x" + (i + 1) + " = " + "r" + k);
-                    //System.out.println(solution);
                 } else if (NextCountRow0 == m.ColEff - 1) {
                     solution.add("x" + (i + 1) + " = " + 0);
                 } else {
@@ -104,18 +107,11 @@ public class SPL {
                         temp += String.valueOf(m.Content[i][m.ColEff-1]);
                     }
                     for (int kol = j+1; kol < m.ColEff-1; kol ++) {
-                        //System.out.println(kol);
                         if (m.Content[i][kol] != 0) {
                             temp += " + " + (-m.Content[i][kol]) + "r" + (m.ColEff - 1 - kol) ;
-                            System.out.println(temp);
                         }
-                        // GAUSS
-                          /*1 1 2 4
-                           0 1 1 2
-                           0 0 0 0 */
                     }
                     solution.add("x" + (i + 1) + " = " + temp);
-                    //System.out.println(solution); 
                 } 
             } 
         } else {
@@ -173,6 +169,33 @@ public class SPL {
         if (count0 ==  m.ColEff - 1) {
             solution.add("SPL tidak mempunyai solusi");
         } else if (count0 == m.ColEff) {
+            /* k = 1;
+            int row, kol;
+            int parameter = 1;
+            String temp;
+            for (j = m.ColEff - 2; j >= 0; j--) {
+                countRow0 = 0;
+                found = false;
+                row = 0;
+                kol = 0;
+                while (m.Content[row][kol] != 1 && kol < j) {
+                    row ++;
+                    kol ++;
+                    if (m.Content[row][kol] != 0) {
+                        break;
+                    }
+                }
+                temp = "";
+                if (kol == j && m.Content[row][kol] == 1) {
+                    temp = String.valueOf(m.Content[row][m.ColEff - 1]);
+                    for (k = kol; k < m.ColEff - 1; k ++) {
+                        temp += " + " + (-m.Content[row][kol]) + "r" + (m.ColEff - 1 - kol);
+                    }
+                    solution.add(temp);
+                } else {
+                    solution.add("x" + (j + 1) + " = " + "r" + parameter);
+                }
+            } */
             k = 0;
             for (i = m.RowEff-1; i >= 0; i --) {
                 countRow0 = 0;
@@ -213,10 +236,6 @@ public class SPL {
                             temp += " + " + (-m.Content[i][kol]) + "r" + (m.ColEff - 1 - kol) ;
                             System.out.println(temp);
                         }
-                        // GAUSS
-                          /*1 1 2 4
-                           0 1 1 2
-                           0 0 0 0 */
                     }
                     solution.add("x" + (i + 1) + " = " + temp);
                     //System.out.println(solution); 
@@ -249,11 +268,12 @@ public class SPL {
         return m;
     }
 
-    public void gaussJordanMethod(Matrix m) {
+    public static void gaussJordanMethod(Matrix m) {
         // KAMUS LOKAL
 
         // ALGORITMA
         m.gaussJordanElimination(m);
+        m.displayMatrix();
     }
 
     public static Matrix gaussJordanMethod(String fileName) throws FileNotFoundException {
