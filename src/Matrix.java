@@ -84,7 +84,7 @@ public class Matrix {
     return m.ColEff - 1;
     }
 
-    public int getNumberOfEelement (Matrix m) {
+    public int getNumberOfElement (Matrix m) {
     // Mengembalikan ukuran matriks
     // KAMUS LOKAL
     // ALGORITMA
